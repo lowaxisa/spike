@@ -1,5 +1,5 @@
 // --- imports
-import { dom } from './tools/dlink.js';
+import { dom } from './dlink.js';
 
 // --- global var
 const page_list = {
