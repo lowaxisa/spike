@@ -1,0 +1,32 @@
+body {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin: 0;
+	background-color: #f5f5f5;
+}
+
+h1 {
+	font-size: 60px;
+}
+h2 {
+	font-size: 40px;
+}
+h3 {
+	font-size: 35px;
+}
+p {
+	font-size: 35px;
+}
+label {
+	font-size: 40px;
+}
+input {
+	font-size: 40px;
+}
+#it-inewf {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 999;
+}
