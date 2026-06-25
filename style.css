@@ -1,10 +1,11 @@
-body {
+html, body {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	margin: 0;
 	background-image: linear-gradient(180deg, #e6ebff 0%, #f5f5f5 20%, #f5f5f5 80%, #e6ebff 100%);
 	background-attachment: fixed;
+	-webkit-font-smoothing: antialiased;
 }
 
 /* --- global */
@@ -22,15 +23,24 @@ p {
 	font-size: 35px;
 	white-space: pre-wrap;
 }
+
 label {
 	font-size: 40px;
 }
+
 input {
-	font-size: 40px;
+	font-size: 50px;
+	border: 4px solid #c7d5eb;
+	border-radius: 25px;
+	padding: 12px 16px;
 }
+
 textarea {
 	font-size: 40px;
-	height: 160px;
+	height: 320px;
+	padding: 12px 16px;
+	border-radius: 25px;
+	border: 4px solid #c7d5eb;
 }
 
 ul {
@@ -44,6 +54,23 @@ ul {
 
 a {
 	font-size: 40px;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 25px;
+}
+
+video {
+	border-radius: 25px;
+}
+
+iframe {
+	width: 100%;
+	border-radius: 25px;
+	border: 4px solid transparent;
+	aspect-ratio: 16/9;
 }
 
 /* --- class */

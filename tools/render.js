@@ -165,24 +165,26 @@ export function show_task(target, name, desc, date) {
 					let video = document.createElement("video");
 					video.src = url;
 					video.controls = true;
-					video.muted = true;
-					video.style.width = "90%";
+					video.style.width = "100%";
 					fappendlist.splice(fappendlist.length - 1, 0, video);
 					update_desc();
 					i = j;
 					break;
 				} else if (cmd_acc === "youtube=") {
 					let url = get_parameter();
+					let video_id = "";
 					let youtube = document.createElement("iframe");
 
 					if (url.includes("watch?v=")) {
-						url = url.replace("watch?v=", "embed/");
+						video_id = url.split("v=")[1].split("&")[0];
 					}
 
-					youtube.src = url;
-					youtube.style.width = "90%";
-					youtube.style.height = "400px";
-					youtube.allowfullscreen = true;
+					if (url.includes("youtu.be/")) {
+						video_id = url.split("youtu.be/")[1].split("?")[0];
+					}
+
+					youtube.src = `https://www.youtube.com/embed/${video_id}`;
+					youtube.setAttribute("allowfullscreen", "");
 
 					fappendlist.splice(fappendlist.length - 1, 0, youtube);
 					update_desc();
