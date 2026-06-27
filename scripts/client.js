@@ -11,7 +11,7 @@ import { send, recive } from "./tools/api.js";
 import { show_page, show_task } from "./tools/render.js";
 
 // --- global var
-const api = "https://script.google.com/macros/s/AKfycbxMx-8HRw3GNRX3acOmW4NZwYodxyLCbYjJcj5Er8nLnEQsfhy1KZt4gEl0LPLSnEqzEQ/exec";
+const api = "https://script.google.com/macros/s/AKfycbyTISnQApFpo8px66BYwE5edVzVMsGulvXlZSicLksw8pkLX0zmfQRgHSwG075MKhLFcg/exec";
 
 // --- state var
 let loadf_initiated = false;
@@ -23,7 +23,7 @@ async function loadf() {
 	dom.it.msgload.style.display = "block";
   dom.it.msgload.innerText = "Carregando as tarefas... (isso pode demorar um pouco)";
   try {
-    let response = await fetch(api + "?route=tasks");
+    let response = await fetch(api + "?route=comp_form");
 
     if (!response.ok) {
       throw new Error(`status ${response.status}`);
@@ -54,7 +54,7 @@ async function sendf(task_title, task_desc, task_date) {
 		desc: task_desc,
 		date: task_date,
 	});
-	let response = await send(api, "?route=send", src);
+	let response = await send(api, "?route=comp_send", src);
 }
 
 // --- event listener
