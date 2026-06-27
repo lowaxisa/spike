@@ -1,0 +1,20 @@
+/* global predef */
+h1 {
+  font-size: var(--font-size-0);
+}
+h2 {
+  font-size: var(--font-size-1);
+}
+h3 {
+  font-size: var(--font-size-2);
+}
+p {
+  font-size: var(--font-size-2);
+  white-space: pre-wrap;
+}
+label {
+  font-size: var(--font-size-1);
+}
+a {
+  font-size: var(--font-size-1);
+}

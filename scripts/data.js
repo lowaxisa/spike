@@ -1,4 +1,4 @@
-export function c_spike() {}; // page class
+function c_spike() {}; // page class
 
 /*
 type is element type in dom
@@ -50,4 +50,4 @@ function remove(target, from) {
 c_spike.prototype.add = add;
 c_spike.prototype.remove = remove;
 
-let spike = new c_spike();
+export let spike = new c_spike();

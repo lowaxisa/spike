@@ -6,9 +6,9 @@ window.onerror = (msg, url, line) => {
 };
 
 // --- imports
-import { dom } from './tools/dlink.js';
-import { send, recive } from './tools/api.js';
-import { show_page, show_task } from './tools/render.js';
+import { dom } from "./tools/dlink.js";
+import { send, recive } from "./tools/api.js";
+import { show_page, show_task } from "./tools/render.js";
 
 // --- global var
 const api = "https://script.google.com/macros/s/AKfycbxMx-8HRw3GNRX3acOmW4NZwYodxyLCbYjJcj5Er8nLnEQsfhy1KZt4gEl0LPLSnEqzEQ/exec";
