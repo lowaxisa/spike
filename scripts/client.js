@@ -1,7 +1,5 @@
 console.log("iniciando...");
 
-
-
 // --- imports, independent imports
 import {spike} from "./data.js";
 import {api} from "./api.js";
@@ -11,44 +9,39 @@ import {boot} from "./boot.js"; boot();
 import {sdraw} from "./render/sdraw.js"; sdraw.page("load");
 import {init} from "./apps/umbrella.js"; init();
 
-// old
-import {show_task} from "./tools/render.js";
-
-
-
 // --- state var
 let loadf_initiated = false;
-
-
 
 // --- logic
 async function loadf() {
 	loadf_initiated = true;
 	spike.home.list.innerHTML = "";
 	spike.home.load.style.display = "block";
-  spike.home.load.innerText = "Carregando as tarefas... (isso pode demorar um pouco)";
-  try {
-    let response = await api.receive("?route=comp_form");
+    spike.home.load.innerText = "Carregando as tarefas... (isso pode demorar um pouco)";
+    try {
+        let response = await api.receive("?route=comp_form");
 
-    if (!response.ok) {
-      throw new Error(`status ${response.status}`);
+        if (!response.ok) {
+            throw new Error(`status ${response.status}`);
+        }
+
+        let data = await response.json();
+
+	    for (let i = data.length - 1; i >= 1; i--) {
+		    let row = data[i];
+		    let date = new Date(row[2]);
+            date.setDate(date.getDate() + 1);
+
+		    date = (isNaN(date.getTime())) ? "" : date.toLocaleDateString("pt-BR");
+    		try {
+                sdraw.form(spike.home.list, row[0], row[1], date);
+            } catch(err) {}
+        }
+    } catch(err) {
+        spike.home.load.innerText = `O banco de dados parece estar fora de ar, tente novamente mais tarde. Erro: ${err}`;
+        loadf_initiated = false;
+        return;
     }
-
-    let data = await response.json();
-
-    for (let i = data.length - 1; i >= 1; i--) {
-      let row = data[i];
-      let date = new Date(row[2]);
-      date = (date.getDate() + 1) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-
-      show_task(spike.home.list, row[0], row[1], date);
-    }
-  } catch(err) {
-    spike.home.load.innerText = `O banco de dados parece estar fora de ar, tente novamente mais tarde. Erro: ${err}`;
-    loadf_initiated = false;
-    return;
-  }
-
 	spike.home.load.style.display = "none";
 	loadf_initiated = false;
 }

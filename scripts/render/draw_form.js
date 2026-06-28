@@ -1,9 +1,6 @@
 // --- imports
 import {spike} from './../data.js';
 
-// --- global var
-let task_count = 0
-
 // --- helpers
 function calc_fontsize(text, width, fontfamily) {
 	let canvas = document.createElement("canvas");
@@ -22,8 +19,8 @@ function calc_charsize(element, width, num_char) {
 }
 
 // --- logic
-export function show_task(target, name, desc, date) {
-	task_count++;
+export function draw_form(target, name, desc, date) {
+    if (!name && !desc && !date) return;
 
 	let fcomp  = document.createElement("div");
 	let fname = document.createElement("h2");
@@ -41,11 +38,6 @@ export function show_task(target, name, desc, date) {
 		fdesc,
 		fdate,
 	];
-
-	fcomp.id = `task${task_count}-comp`;
-	fname.id = `task${task_count}-name`;
-	fdesc.id = `task${task_count}-desc`;
-	fdate.id = `task${task_count}-date`;
 
 	fname.innerText = `Trabalho: ${name}`;
 	fdate.innerText = `Data de entrega: ${date}`;
@@ -73,6 +65,10 @@ export function show_task(target, name, desc, date) {
 					let temp_return = "";
 					for (let k = j + 1; k < desc.length; k++) {
 						let char = desc[k];
+                        if (char === "\\") {
+                            k += 1;
+                            temp_return += desc[k];
+                        }
 						if (char === ";") {
 							j = k;
 							return temp_return;
@@ -80,13 +76,13 @@ export function show_task(target, name, desc, date) {
 							temp_return += char;
 						}
 					}
+                    return null;
 				};
 				const update_desc = () => {
 					if (descchanged) {
 						fdesc.innerText = acc;
 						fappendlist.splice(fappendlist.length - 2, 0, fdesc);
 						fdesc = document.createElement("p");
-						fdesc.id = `task${task_count}-desc${descnum}`;
 						descnum += 1; acc = "";
 					} else {
 						if (!removedesctemplate) {
@@ -137,7 +133,17 @@ export function show_task(target, name, desc, date) {
 					i = j;
 					break;
 				} else if (cmd_acc === "link=") {
-					let splited = get_parameter().split(",");
+					let args = get_parameter();
+                    if (args === null) {
+                        fcomp.remove();
+                        return;
+                    }
+                    let splited = args.split(",");
+                    if (!splited[0].startsWith("https://")) {
+                        fcomp.remove();
+                        return;
+                    }
+
 					let link = document.createElement("a");
 					link.href = splited[0];
 					link.innerText = splited[1];
