@@ -1,12 +1,7 @@
 // --- imports
-import { dom } from './dlink.js';
+import {spike} from './../data.js';
 
 // --- global var
-const page_list = {
-	"page-init": dom.it.page,
-	"page-form": dom.fm.page,
-};
-
 let task_count = 0
 
 // --- helpers
@@ -27,16 +22,6 @@ function calc_charsize(element, width, num_char) {
 }
 
 // --- logic
-export function show_page(page, mode = "block") {
-	for (const [key, value] of Object.entries(page_list)) {
-		if (key === page) {
-			value.style.display = mode;
-		} else {
-			value.style.display = "none";
-		}
-	}
-}
-
 export function show_task(target, name, desc, date) {
 	task_count++;
 
@@ -66,7 +51,7 @@ export function show_task(target, name, desc, date) {
 	fdate.innerText = `Data de entrega: ${date}`;
 
 	// style
-	fcomp.classList.add("it-fc1");
+	fcomp.classList.add("div2");
 	fcomp.style.backgroundColor = "#bfcade";
 	fcomp.style.padding         = "5px 20px";
 	fcomp.style.borderRadius    = "25px";
@@ -208,12 +193,3 @@ export function show_task(target, name, desc, date) {
 		fcomp.appendChild(element);
 	}
 }
-
-// --- init
-show_page("none"); // hide everthing
-
-// defining styles
-dom.fm.isendf.style.backgroundColor   = "green";
-dom.fm.icancelf.style.backgroundColor = "red";
-
-show_page("page-init");

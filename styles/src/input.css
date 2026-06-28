@@ -14,3 +14,22 @@ textarea {
   border: 4px solid #c7d5eb;
 }
 
+/* class */
+.input2 { /* for form page button */
+	font-size: 120px;
+	border-radius: 50px;
+	padding: 0px 40px;
+	color: white;
+}
+
+.input1 { /* for buttons in home page */
+	font-size: 140px;
+	border-radius: 50px;
+	padding: 0px 40px;
+}
+
+.input1 span {
+	display: inline-block;
+	transform: translateY(-20px);
+	font-size: 120px;
+}

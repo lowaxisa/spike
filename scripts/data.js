@@ -37,7 +37,9 @@ function add(type, name = null, from, link = null) {
 
 function remove(target, from) {
 	this[from][target].remove();
+}
 
+function gc() {
 	for (let page in this) {
 		for (let element in this[page]) {
 			if (!this[page][element].isConnected) {
@@ -47,7 +49,10 @@ function remove(target, from) {
 	}
 }
 
+// link
 c_spike.prototype.add = add;
 c_spike.prototype.remove = remove;
+c_spike.prototype.gc = gc;
 
+// summon
 export let spike = new c_spike();

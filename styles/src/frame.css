@@ -16,3 +16,38 @@ iframe {
 	aspect-ratio: 16/9;
 }
 
+ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* class */
+.div4 { /* for button div in page form */
+	margin-top: 15px;
+	display: flex;
+	gap: 15px;
+}
+
+.div3 { /* for form page div */
+	display: flex;
+	flex-direction: column;
+}
+
+.div2 { /* for forms */
+	width: 95%;
+	box-sizing: border-box;
+	word-break: break-word;
+}
+
+.div1 { /* for button container in page home */
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 1;
+	gap: 5px;
+	display: flex;
+}
